@@ -90,7 +90,7 @@ public class BasicPlayerInfoScreen extends Screen {
             }
 
             private double convertToScaledValue() {
-                return (this.value * BasicPlayerInfo.SIZE_TOLERANCE * 2) - BasicPlayerInfo.SIZE_TOLERANCE + 1.0;
+                return (1-BasicPlayerInfo.SIZE_TOLERANCE_DOWN)+((1+BasicPlayerInfo.SIZE_TOLERANCE_UP)-(1-BasicPlayerInfo.SIZE_TOLERANCE_DOWN))*this.value;
             }
 
             @Override

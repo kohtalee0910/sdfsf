@@ -12,7 +12,9 @@ import java.util.Random;
  * This is basic info about the player, that they set.
  */
 public class BasicPlayerInfo {
-    public static final float SIZE_TOLERANCE = 0.05f;
+    public static final float SIZE_TOLERANCE = 0.35f;
+    public static final float SIZE_TOLERANCE_UP = 0.5f;
+    public static final float SIZE_TOLERANCE_DOWN = 0.35f;
 
     // Default values here are based on Colin's properties
     // When the player is TF'd these values will copy over to the latex representative
@@ -68,7 +70,7 @@ public class BasicPlayerInfo {
         info.irisRightColor = random.nextFloat() > 0.05f ? info.irisLeftColor : Util.getRandom(IRIS_COLORS, random); // 5% for dichrome eyes
         info.eyeStyle = Util.getRandom(EyeStyle.values(), random);
         info.overrideOthersToMatchStyle = false;
-        info.size = (random.nextFloat() * (random.nextBoolean() ? SIZE_TOLERANCE : -SIZE_TOLERANCE)) + 1.0f;
+        info.size = (random.nextFloat() * (random.nextBoolean() ? SIZE_TOLERANCE/2.2F: -SIZE_TOLERANCE/2.2F)) + 1.0f;
         return info;
     }
 
@@ -133,11 +135,11 @@ public class BasicPlayerInfo {
     }
 
     public float getSize() {
-        return Mth.clamp(size, 1.0f - SIZE_TOLERANCE, 1.0f + SIZE_TOLERANCE);
+        return Mth.clamp(size, 1.0f - SIZE_TOLERANCE_DOWN, 1.0f + SIZE_TOLERANCE_UP);
     }
 
     public double getSizeValueForConfiguration() {
-        return (size - 1.0f + SIZE_TOLERANCE) / (SIZE_TOLERANCE * 2);
+        return (size - (1-SIZE_TOLERANCE_DOWN))/((1 + SIZE_TOLERANCE_UP) - (1 - SIZE_TOLERANCE_DOWN));
     }
 
     public void copyFrom(BasicPlayerInfo other) {

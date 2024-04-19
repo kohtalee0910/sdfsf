@@ -98,10 +98,16 @@ public class ArmorLatexFemaleSquidDogModel<T extends ChangedEntity> extends Late
 
         PartDefinition Torso = partdefinition.addOrReplaceChild("Torso", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.1F, -2.2F, 8.0F, 12.0F, 4.0F, layer.dualDeformation.extend(0.1F)), PartPose.offset(0.0F, -2.2F, 0.0F));
 
-        PartDefinition Plantoids = Torso.addOrReplaceChild("Plantoids", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.2F));
+        /*[[PartDefinition Plantoids = Torso.addOrReplaceChild("Plantoids", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -2.2F));
 
         PartDefinition Plantoid_r1 = Plantoids.addOrReplaceChild("Plantoid_r1", CubeListBuilder.create().texOffs(18, 22).mirror().addBox(-4.0F, 2.3F, -0.8F, 8.0F, 1.0F, 2.0F, layer.deformation.extend(-0.5f)).mirror(false)
                 .texOffs(18, 19).mirror().addBox(-4.0F, -1.7F, -0.8F, 8.0F, 3.0F, 2.0F, layer.deformation.extend(-0.5f)).mirror(false), PartPose.offsetAndRotation(0.0F, 2.0F, 0.0F, -0.2793F, 0.0F, 0.0F));
+        */
+        PartDefinition Plantoids = Torso.addOrReplaceChild("Plantoids", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 1.5F, -2.975F, -0.2618F, 0.0F, 0.0F));
+
+        PartDefinition Plantoid_r1 = Plantoids.addOrReplaceChild("Plantoid_r1", CubeListBuilder.create().texOffs(18, 22).mirror().addBox(-4.0F, 1.4012F, -1.2384F, 8.0F, 1.0F, 2.0F, layer.deformation.extend(-0.5F)).mirror(false)
+                .texOffs(18, 19).mirror().addBox(-4.0F, -2.5988F, -1.2384F, 8.0F, 3.0F, 2.0F, layer.deformation.extend(-0.5F)).mirror(false), PartPose.offsetAndRotation(0.0F, 2.0F, 0.0F, -0.2793F, 0.0F, 0.0F));
+
 
         PartDefinition RightUpperTentacle = Torso.addOrReplaceChild("RightUpperTentacle", CubeListBuilder.create(), PartPose.offset(-2.5F, 2.7F, 1.0F));
 

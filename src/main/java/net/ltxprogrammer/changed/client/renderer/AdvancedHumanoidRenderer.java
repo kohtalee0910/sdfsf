@@ -77,7 +77,7 @@ public abstract class AdvancedHumanoidRenderer<T extends ChangedEntity, M extend
     }
 
     protected void scaleForBPI(BasicPlayerInfo bpi, PoseStack poseStack) {
-        float forcedLimit = Mth.clamp(bpi.getSize(), 1.0f - BasicPlayerInfo.SIZE_TOLERANCE, 1.05f + BasicPlayerInfo.SIZE_TOLERANCE);
+        float forcedLimit = Mth.clamp(bpi.getSize(), 1.0f - BasicPlayerInfo.SIZE_TOLERANCE_DOWN, 1.05f + BasicPlayerInfo.SIZE_TOLERANCE_UP);
         poseStack.scale(forcedLimit, forcedLimit, forcedLimit);
     }
 

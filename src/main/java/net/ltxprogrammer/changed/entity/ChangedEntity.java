@@ -399,7 +399,7 @@ public abstract class ChangedEntity extends Monster {
     public ChangedEntity(EntityType<? extends ChangedEntity> type, Level level) {
         super(type, level);
         this.setAttributes(getAttributes());
-        this.setHealth((float)this.getAttributes().getInstance(Attributes.MAX_HEALTH).getBaseValue());
+        this.setHealth((float)this.getAttributes().getInstance(Attributes.MAX_HEALTH).getBaseValue() + ((getBasicPlayerInfo().getSize()-1)*40));
         if (!type.is(ChangedTags.EntityTypes.ARMLESS) && this.getNavigation() instanceof GroundPathNavigation navigation)
             navigation.setCanOpenDoors(true);
 
@@ -676,9 +676,9 @@ public abstract class ChangedEntity extends Monster {
         return variant == null ? def : func.apply(variant);
     }
 
-    public double getTransfurMaxHealth() { return callIfNotNull(getSelfVariant(), variant -> variant.additionalHealth + 20.0, 20.0); }
+    public double getTransfurMaxHealth() { return callIfNotNull(getSelfVariant(), variant -> variant.additionalHealth + 20.0 + ((getBasicPlayerInfo().getSize()-1)*30), 20.0); }
 
-    public double getTransfurLandSpeed() { return callIfNotNull(getSelfVariant(), variant -> (double)variant.groundSpeed, 1.0); }
+    public double getTransfurLandSpeed() { return callIfNotNull(getSelfVariant(), variant -> (double)variant.groundSpeed/(1+(getBasicPlayerInfo().getSize()-1)/2), 1.0); }
 
     public double getTransfurSwimSpeed() { return callIfNotNull(getSelfVariant(), variant -> (double)variant.swimSpeed, 1.0); }
 

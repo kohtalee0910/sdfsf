@@ -29,6 +29,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
@@ -276,15 +277,18 @@ public class TransfurVariantInstance<T extends ChangedEntity> {
                 ProcessTransfur.ifPlayerTransfurred(player, variant -> {
                     ChangedEntity changedEntity = variant.getChangedEntity();
                     final float morphProgress = variant.getMorphProgression();
-
                     if (morphProgress < 1f) {
                         final var playerDim = player.getDimensions(event.getPose());
                         final var latexDim = changedEntity.getDimensions(event.getPose());
                         float width = Mth.lerp(morphProgress, playerDim.width, latexDim.width);
                         float height = Mth.lerp(morphProgress, playerDim.height, latexDim.height);
-
+                        PlayerDataExtension playerDataExtension = (PlayerDataExtension)player;
+                        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0 + variant.parent.additionalHealth + ((playerDataExtension.getBasicPlayerInfo().getSize()-1)*40));
                         event.setNewSize(new EntityDimensions(width, height, latexDim.fixed));
                         event.setNewEyeHeight(Mth.lerp(morphProgress, player.getEyeHeight(event.getPose()), changedEntity.getEyeHeight(event.getPose())));
+                        player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((variant.parent.groundSpeed)/(1+(playerDataExtension.getBasicPlayerInfo().getSize()-1)/2)/10);
+                        player.getAttribute(ForgeMod.REACH_DISTANCE.get()).setBaseValue(4.5F*playerDataExtension.getBasicPlayerInfo().getSize());
+                        player.getAttribute(ForgeMod.ATTACK_RANGE.get()).setBaseValue(3F*playerDataExtension.getBasicPlayerInfo().getSize());
                     } else {
                         event.setNewSize(changedEntity.getDimensions(event.getPose()));
                         event.setNewEyeHeight(changedEntity.getEyeHeight(event.getPose()));
@@ -725,7 +729,11 @@ public class TransfurVariantInstance<T extends ChangedEntity> {
                 }
             }
         }
-
+        PlayerDataExtension playerDataExtension = (PlayerDataExtension)player;
+        player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0 + parent.additionalHealth + ((playerDataExtension.getBasicPlayerInfo().getSize()-1)*30));
+        player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((parent.groundSpeed)/(1+(playerDataExtension.getBasicPlayerInfo().getSize()-1)/2)/10);
+        player.getAttribute(ForgeMod.REACH_DISTANCE.get()).setBaseValue(4.5F*playerDataExtension.getBasicPlayerInfo().getSize());
+        player.getAttribute(ForgeMod.ATTACK_RANGE.get()).setBaseValue(3F*playerDataExtension.getBasicPlayerInfo().getSize());
         // Step size
         if (player.isCrouching() && parent.stepSize > 0.6f)
             player.maxUpStep = 0.6f;
