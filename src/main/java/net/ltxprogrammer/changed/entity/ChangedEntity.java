@@ -3,6 +3,7 @@ package net.ltxprogrammer.changed.entity;
 import com.mojang.datafixers.util.Pair;
 import net.ltxprogrammer.changed.ability.AbstractAbility;
 import net.ltxprogrammer.changed.ability.AbstractAbilityInstance;
+import net.ltxprogrammer.changed.ability.GrabEntityAbilityInstance;
 import net.ltxprogrammer.changed.ability.IAbstractChangedEntity;
 import net.ltxprogrammer.changed.block.WhiteLatexTransportInterface;
 import net.ltxprogrammer.changed.entity.ai.UseAbilityGoal;
@@ -451,6 +452,15 @@ public abstract class ChangedEntity extends Monster {
 
         if (livingEntity.getVehicle() instanceof SeatEntity seat && seat.shouldSeatedBeInvisible())
             return false;
+
+        if (livingEntity instanceof LivingEntityDataExtension ext) {
+            var ability = AbstractAbility.getAbilityInstance(ext.getGrabbedBy(), ChangedAbilities.GRAB_ENTITY_ABILITY.get());
+            if (ability != null) {
+                if (ability.suited) {
+                    return false;
+                }
+            }
+        }
 
         for (var checkVariant : TransfurVariant.MOB_FUSION_LATEX_FORMS) {
             if (ChangedRegistry.TRANSFUR_VARIANT.get().getValue(checkVariant).isFusionOf(getSelfVariant(), livingEntity.getClass()))

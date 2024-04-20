@@ -10,5 +10,6 @@ public interface LivingEntityDataExtension {
 
     @Nullable
     LivingEntity getGrabbedBy();
+    boolean isSuited();
     void setGrabbedBy(@Nullable LivingEntity holder);
 }

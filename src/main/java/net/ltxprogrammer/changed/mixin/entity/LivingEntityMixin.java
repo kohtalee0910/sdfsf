@@ -54,6 +54,9 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityDa
     @Unique @Nullable
     public LivingEntity grabbedBy = null;
 
+    @Unique
+    public boolean suited = false;
+
     @Override
     public int getNoControlTicks() {
         return controlDisabledFor;
@@ -69,6 +72,9 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityDa
     public LivingEntity getGrabbedBy() {
         return grabbedBy;
     }
+
+    @Override
+    public boolean isSuited() {return suited;}
 
     @Override
     public void setGrabbedBy(@Nullable LivingEntity grabbedBy) {
