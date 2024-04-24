@@ -17,7 +17,6 @@ import net.ltxprogrammer.changed.util.EntityUtil;
 import net.ltxprogrammer.changed.util.PatreonBenefits;
 import net.ltxprogrammer.changed.util.UniversalDist;
 import net.ltxprogrammer.changed.world.enchantments.LatexProtectionEnchantment;
-import net.ltxprogrammer.changed.entity.BasicPlayerInfo;
 import net.minecraft.Util;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.resources.ResourceLocation;
@@ -62,7 +61,6 @@ import static net.ltxprogrammer.changed.init.ChangedGameRules.RULE_KEEP_BRAIN;
 @Mod.EventBusSubscriber(modid = Changed.MODID)
 public class ProcessTransfur {
     private static final Logger LOGGER = LogUtils.getLogger();
-
 
     public static void setPlayerTransfurProgress(Player player, float progress) {
         if (!(player instanceof PlayerDataExtension ext))
@@ -341,7 +339,7 @@ public class ProcessTransfur {
         TransfurVariantInstance<?> instance = TransfurVariantInstance.variantFor(variant, player);
         playerDataExtension.setLatexVariant(instance);
         if (variant != null)
-            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0 + variant.additionalHealth + ((playerDataExtension.getBasicPlayerInfo().getSize()-1)*40));
+            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0 + variant.additionalHealth);
         else
             player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0);
 
