@@ -27,14 +27,15 @@ public class LatexHeldEntityLayer<T extends ChangedEntity, M extends AdvancedHum
         if (ability == null) return;
         if (ability.grabbedEntity == null) return;
         if (ability.suited) return;
-
+        float scale = 1f/entity.getBasicPlayerInfo().getSize();
+        //pose.scale(scale,scale,scale);
         TransfurVariantInstance.syncEntityPosRotWithEntity(ability.grabbedEntity, entity);
         pose.pushPose();
         torso.translateAndRotate(pose);
 
         pose.translate(-0.0625, 0.0, -4.5 / 16.0);
         pose.mulPose(Vector3f.ZP.rotationDegrees(-11.0f));
-
+        pose.scale(scale,scale,scale);
         var entityRenderer = Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(ability.grabbedEntity);
 
         if (!(entityRenderer instanceof LivingEntityRendererExtender ext)) return;

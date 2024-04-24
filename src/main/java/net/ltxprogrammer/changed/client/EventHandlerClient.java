@@ -1,5 +1,6 @@
 package net.ltxprogrammer.changed.client;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.ltxprogrammer.changed.Changed;
 import net.ltxprogrammer.changed.ability.AbstractAbility;
 import net.ltxprogrammer.changed.client.gui.ContentWarningScreen;
@@ -7,6 +8,7 @@ import net.ltxprogrammer.changed.client.tfanimations.TransfurAnimator;
 import net.ltxprogrammer.changed.data.BiListener;
 import net.ltxprogrammer.changed.entity.LivingEntityDataExtension;
 import net.ltxprogrammer.changed.entity.PlayerDataExtension;
+import net.ltxprogrammer.changed.entity.BasicPlayerInfo;
 import net.ltxprogrammer.changed.entity.PlayerMover;
 import net.ltxprogrammer.changed.entity.SeatEntity;
 import net.ltxprogrammer.changed.entity.variant.TransfurVariantInstance;
@@ -57,12 +59,16 @@ public class EventHandlerClient {
             } else if (grabAbility != null && grabAbility.shouldRenderGrabbedEntity()) {
                 if (grabAbility.grabbedHasControl && grabAbility.syncEntity != null) {
                     grabAbility.syncEntity.mirrorLiving(event.getEntity());
-
+                    float scale = 1F;
                     if (event.getEntity() instanceof Player player) {
                         TransfurVariantInstance.syncInventory(grabAbility.syncEntity, player, false);
+                        if (player instanceof PlayerDataExtension ext2) {
+                            scale = ext2.getBasicPlayerInfo().getSize();
+                        }
                     }
-
-                    FormRenderHandler.renderLiving(grabAbility.syncEntity, event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight(), event.getPartialTick());
+                    PoseStack posestack = event.getPoseStack();
+                    posestack.scale(scale,scale,scale);
+                    FormRenderHandler.renderLiving(grabAbility.syncEntity, posestack, event.getMultiBufferSource(), event.getPackedLight(), event.getPartialTick());
                 }
             }
             return;

@@ -83,6 +83,7 @@ public abstract class ChangedEntity extends Monster {
     public float flyAmountO;
     float tailDragAmount = 0.0F;
     float tailDragAmountO;
+    float mutationAmount = 1F;
 
     final Map<SpringType.Direction, EnumMap<SpringType, SpringType.Simulator>> simulatedSprings;
 

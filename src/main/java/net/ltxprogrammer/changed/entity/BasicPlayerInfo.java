@@ -1,5 +1,7 @@
 package net.ltxprogrammer.changed.entity;
 
+import net.ltxprogrammer.changed.entity.variant.TransfurVariant;
+import net.ltxprogrammer.changed.entity.variant.TransfurVariantInstance;
 import net.ltxprogrammer.changed.util.Color3;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
@@ -12,8 +14,8 @@ import java.util.Random;
  * This is basic info about the player, that they set.
  */
 public class BasicPlayerInfo {
-    public static final float SIZE_TOLERANCE = 0.35f;
-    public static final float SIZE_TOLERANCE_UP = 0.5f;
+    public static final float SIZE_TOLERANCE = 0.05f;
+    public static final float SIZE_TOLERANCE_UP = 0.75f;
     public static final float SIZE_TOLERANCE_DOWN = 0.35f;
 
     // Default values here are based on Colin's properties
@@ -70,7 +72,7 @@ public class BasicPlayerInfo {
         info.irisRightColor = random.nextFloat() > 0.05f ? info.irisLeftColor : Util.getRandom(IRIS_COLORS, random); // 5% for dichrome eyes
         info.eyeStyle = Util.getRandom(EyeStyle.values(), random);
         info.overrideOthersToMatchStyle = false;
-        info.size = (random.nextFloat() * (random.nextBoolean() ? SIZE_TOLERANCE/2.2F: -SIZE_TOLERANCE/2.2F)) + 1.0f;
+        info.size = (random.nextFloat() * (random.nextBoolean() ? SIZE_TOLERANCE: -SIZE_TOLERANCE)) + 1.0f;
         return info;
     }
 

@@ -40,6 +40,7 @@ public abstract class AdvancedHumanoidRenderer<T extends ChangedEntity, M extend
     private void addLayers(EntityRendererProvider.Context context, M main) {
         /*if (Changed.config.client.useNewModels.get())
             hairLayer = new LatexHumanoidHairLayer<>(this, context.getModelSet());*/
+        this.addLayer(new LatexHeldEntityLayer<>(this));
         this.addLayer(new LatexItemInHandLayer<>(this));
         if (hairLayer != null)
             this.addLayer(hairLayer);
@@ -50,7 +51,6 @@ public abstract class AdvancedHumanoidRenderer<T extends ChangedEntity, M extend
         this.addLayer(new LatexParrotOnShoulderLayer<>(this, context.getModelSet()));
         this.addLayer(new LatexBeeStingerLayer<>(this));
         this.addLayer(new LatexSpinAttackEffectLayer<>(this, context.getModelSet()));
-        this.addLayer(new LatexHeldEntityLayer<>(this));
     }
 
     public AdvancedHumanoidRenderer(EntityRendererProvider.Context context, M main,
