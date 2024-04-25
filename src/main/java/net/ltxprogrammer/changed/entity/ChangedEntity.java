@@ -3,7 +3,6 @@ package net.ltxprogrammer.changed.entity;
 import com.mojang.datafixers.util.Pair;
 import net.ltxprogrammer.changed.ability.AbstractAbility;
 import net.ltxprogrammer.changed.ability.AbstractAbilityInstance;
-import net.ltxprogrammer.changed.ability.GrabEntityAbilityInstance;
 import net.ltxprogrammer.changed.ability.IAbstractChangedEntity;
 import net.ltxprogrammer.changed.block.WhiteLatexTransportInterface;
 import net.ltxprogrammer.changed.entity.ai.UseAbilityGoal;
@@ -83,7 +82,6 @@ public abstract class ChangedEntity extends Monster {
     public float flyAmountO;
     float tailDragAmount = 0.0F;
     float tailDragAmountO;
-    float mutationAmount = 1F;
 
     final Map<SpringType.Direction, EnumMap<SpringType, SpringType.Simulator>> simulatedSprings;
 
@@ -400,7 +398,7 @@ public abstract class ChangedEntity extends Monster {
     public ChangedEntity(EntityType<? extends ChangedEntity> type, Level level) {
         super(type, level);
         this.setAttributes(getAttributes());
-        this.setHealth((float)this.getAttributes().getInstance(Attributes.MAX_HEALTH).getBaseValue() + ((getBasicPlayerInfo().getSize()-1)*40));
+        this.setHealth((float)this.getAttributes().getInstance(Attributes.MAX_HEALTH).getBaseValue());
         if (!type.is(ChangedTags.EntityTypes.ARMLESS) && this.getNavigation() instanceof GroundPathNavigation navigation)
             navigation.setCanOpenDoors(true);
 
@@ -453,15 +451,6 @@ public abstract class ChangedEntity extends Monster {
 
         if (livingEntity.getVehicle() instanceof SeatEntity seat && seat.shouldSeatedBeInvisible())
             return false;
-
-        if (livingEntity instanceof LivingEntityDataExtension ext) {
-            var ability = AbstractAbility.getAbilityInstance(ext.getGrabbedBy(), ChangedAbilities.GRAB_ENTITY_ABILITY.get());
-            if (ability != null) {
-                if (ability.suited) {
-                    return false;
-                }
-            }
-        }
 
         for (var checkVariant : TransfurVariant.MOB_FUSION_LATEX_FORMS) {
             if (ChangedRegistry.TRANSFUR_VARIANT.get().getValue(checkVariant).isFusionOf(getSelfVariant(), livingEntity.getClass()))
@@ -686,9 +675,9 @@ public abstract class ChangedEntity extends Monster {
         return variant == null ? def : func.apply(variant);
     }
 
-    public double getTransfurMaxHealth() { return callIfNotNull(getSelfVariant(), variant -> variant.additionalHealth + 20.0 + ((getBasicPlayerInfo().getSize()-1)*30), 20.0); }
+    public double getTransfurMaxHealth() { return callIfNotNull(getSelfVariant(), variant -> variant.additionalHealth + 20.0, 20.0); }
 
-    public double getTransfurLandSpeed() { return callIfNotNull(getSelfVariant(), variant -> (double)variant.groundSpeed/(1+(getBasicPlayerInfo().getSize()-1)/2), 1.0); }
+    public double getTransfurLandSpeed() { return callIfNotNull(getSelfVariant(), variant -> (double)variant.groundSpeed, 1.0); }
 
     public double getTransfurSwimSpeed() { return callIfNotNull(getSelfVariant(), variant -> (double)variant.swimSpeed, 1.0); }
 
