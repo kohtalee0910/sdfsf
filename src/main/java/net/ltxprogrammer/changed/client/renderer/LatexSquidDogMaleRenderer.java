@@ -30,7 +30,8 @@ public class LatexSquidDogMaleRenderer extends AdvancedHumanoidRenderer<LatexSqu
 
     @Override
     protected void scale(LatexSquidDogMale entity, PoseStack pose, float partialTick) {
-        float f = 1.0525F;
+        float f = 1F;
+        //float f = 1.0525F;
         pose.scale(1.0525F, 1.0525F, 1.0525F);
     }
 }

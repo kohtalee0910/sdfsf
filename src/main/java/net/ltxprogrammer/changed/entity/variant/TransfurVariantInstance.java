@@ -320,7 +320,7 @@ public class TransfurVariantInstance<T extends ChangedEntity> {
                         player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20.0 + variant.parent.additionalHealth + ((playerDataExtension.getBasicPlayerInfo().getSize()-1)*40));
                         event.setNewSize(new EntityDimensions(width, height, latexDim.fixed));
                         event.setNewEyeHeight(Mth.lerp(morphProgress, player.getEyeHeight(event.getPose()), changedEntity.getEyeHeight(event.getPose())));
-                        player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((variant.parent.groundSpeed)/(1+(playerDataExtension.getBasicPlayerInfo().getSize()-1)/2)/10);
+                        player.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((variant.parent.groundSpeed)/(1+(playerDataExtension.getBasicPlayerInfo().getSize()-1)/2)/30);
                         player.getAttribute(ForgeMod.REACH_DISTANCE.get()).setBaseValue(4.5F*playerDataExtension.getBasicPlayerInfo().getSize());
                         player.getAttribute(ForgeMod.ATTACK_RANGE.get()).setBaseValue(3F*playerDataExtension.getBasicPlayerInfo().getSize());
                     } else {
@@ -773,9 +773,9 @@ public class TransfurVariantInstance<T extends ChangedEntity> {
         player.getAttribute(ForgeMod.ATTACK_RANGE.get()).setBaseValue(3F*playerDataExtension.getBasicPlayerInfo().getSize());
         // Step size
         if (player.isCrouching() && parent.stepSize > 0.6f)
-            player.maxUpStep = 0.6f;
+            player.maxUpStep = 0.6f * playerDataExtension.getBasicPlayerInfo().getSize();
         else
-            player.maxUpStep = parent.stepSize;
+            player.maxUpStep = parent.stepSize * playerDataExtension.getBasicPlayerInfo().getSize();
 
         for (var instance : abilityInstances.values()) {
             instance.getController().tickCoolDown();

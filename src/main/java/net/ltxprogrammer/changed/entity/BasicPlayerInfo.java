@@ -15,8 +15,8 @@ import java.util.Random;
  */
 public class BasicPlayerInfo {
     public static final float SIZE_TOLERANCE = 0.05f;
-    public static final float SIZE_TOLERANCE_UP = 0.75f;
-    public static final float SIZE_TOLERANCE_DOWN = 0.35f;
+    public static final float SIZE_TOLERANCE_UP = 1.1f;
+    public static final float SIZE_TOLERANCE_DOWN = 0.6f;
 
     // Default values here are based on Colin's properties
     // When the player is TF'd these values will copy over to the latex representative

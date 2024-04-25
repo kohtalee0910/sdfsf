@@ -31,7 +31,6 @@ public class LatexHumanRenderer extends AdvancedHumanoidRenderer<LatexHuman, Lat
 	public ResourceLocation getTextureLocation(LatexHuman human) {
 		return human.getSkinTextureLocation();
 	}
-
 	@Override
 	public void render(LatexHuman latex, float p_115456_, float p_115457_, PoseStack p_115458_, MultiBufferSource bufferSource, int p_115460_) {
 		if (latex.getUnderlyingPlayer() instanceof AbstractClientPlayer clientPlayer)
