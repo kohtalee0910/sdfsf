@@ -62,7 +62,11 @@ public class GrabOverlay {
 
             renderBackground(x, y, BAR_WIDTH_PLAYER, BAR_HEIGHT_PLAYER, stack);
             renderForeground(x, y, BAR_WIDTH_PLAYER, BAR_HEIGHT_PLAYER, stack, grabAbility.getGrabStrength(partialTicks));
-            renderSuit(x, y, BAR_WIDTH_PLAYER, BAR_HEIGHT_PLAYER, stack, grabAbility.suited ? 1.0f : grabAbility.getSuitTransitionProgress(partialTicks));
+            if (!grabAbility.suited) {
+                renderSuit(x, y, BAR_WIDTH_PLAYER, BAR_HEIGHT_PLAYER, stack, grabAbility.suited ? 1.0f : grabAbility.getSuitTransitionProgress(partialTicks));
+            } else {
+                renderSuit(x, y, BAR_WIDTH_PLAYER, BAR_HEIGHT_PLAYER, stack, grabAbility.getAbsorbTransitionProgress(partialTicks));
+            }
         }
     }
 
@@ -80,7 +84,11 @@ public class GrabOverlay {
 
         renderBackground(x, y, BAR_WIDTH_LATEX, BAR_HEIGHT_LATEX, stack);
         renderForeground(x, y, BAR_WIDTH_LATEX, BAR_HEIGHT_LATEX, stack, grabAbility.getGrabStrength(partialTicks));
-        renderSuit(x, y, BAR_WIDTH_LATEX, BAR_HEIGHT_LATEX, stack, grabAbility.suited ? 1.0f : grabAbility.getSuitTransitionProgress(partialTicks));
+        if (!grabAbility.suited) {
+            renderSuit(x, y, BAR_WIDTH_LATEX, BAR_HEIGHT_LATEX, stack, grabAbility.suited ? 1.0f : grabAbility.getSuitTransitionProgress(partialTicks));
+        } else {
+            renderSuit(x, y, BAR_WIDTH_LATEX, BAR_HEIGHT_LATEX, stack, grabAbility.getAbsorbTransitionProgress(partialTicks));
+        }
     }
 
     public static void renderProgressBars(Gui gui, PoseStack stack, float partialTicks, int screenWidth, int screenHeight) {

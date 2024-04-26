@@ -150,17 +150,12 @@ public class LatexSquidDogFemaleModel extends AdvancedHumanoidModel<LatexSquidDo
                 .texOffs(32, 0).addBox(-4.0F, 4.5F, -2.2F, 8.0F, 6.0F, 4.0F, new CubeDeformation(-0.2F))
                 .texOffs(48, 10).addBox(-4.0F, 9.1F, -2.2F, 8.0F, 3.0F, 4.0F, new CubeDeformation(0.1F)), PartPose.offset(0.0F, -2.2F, 0.0F));
 
-        PartDefinition Plantoids = Torso.addOrReplaceChild("Plantoids", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 1.6F, -2.8F, -0.3927F, 0.0F, 0.0F));
+        PartDefinition Plantoids = Torso.addOrReplaceChild("Plantoids", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 1.6F, -2.55F, -0.3491F, 0.0F, 0.0F));
 
-        PartDefinition Center3_r1 = Plantoids.addOrReplaceChild("Center3_r1", CubeListBuilder.create().texOffs(80, 10).addBox(5.2F, -0.5F, -1.0F, 4.0F, 1.0F, 0.0F, new CubeDeformation(1.299F))
-                .texOffs(80, 10).addBox(-2.0F, -0.5F, -1.0F, 4.0F, 1.0F, 0.0F, new CubeDeformation(1.299F)), PartPose.offsetAndRotation(-3.6F, 1.5039F, 3.4186F, 0.288F, 0.0F, 0.0F));
+        PartDefinition RightPlantoid_r1 = Plantoids.addOrReplaceChild("RightPlantoid_r1", CubeListBuilder.create().texOffs(77, 7).addBox(-5.3F, -1.9192F, -0.3506F, 4.0F, 4.0F, 3.0F, new CubeDeformation(1.1F))
+                .texOffs(74, 45).addBox(1.3F, -1.9192F, -0.3506F, 4.0F, 4.0F, 3.0F, new CubeDeformation(1.1F)), PartPose.offsetAndRotation(0.0F, 2.0F, 0.0F, -0.2793F, 0.0F, 0.0F));
 
-        PartDefinition RightPlantoid2_r1 = Plantoids.addOrReplaceChild("RightPlantoid2_r1", CubeListBuilder.create().texOffs(77, 7).addBox(-5.6F, 1.0808F, 0.1494F, 4.0F, 1.0F, 3.0F, new CubeDeformation(1.3F))
-                .texOffs(79, 9).addBox(-5.6F, -1.9192F, 0.1494F, 4.0F, 4.0F, 1.0F, new CubeDeformation(1.301F))
-                .texOffs(74, 45).addBox(1.6F, 1.0808F, 0.1494F, 4.0F, 1.0F, 3.0F, new CubeDeformation(1.3F))
-                .texOffs(76, 47).addBox(1.6F, -1.9192F, 0.1494F, 4.0F, 4.0F, 1.0F, new CubeDeformation(1.301F)), PartPose.offsetAndRotation(0.0F, 2.0F, 0.0F, -0.2793F, 0.0F, 0.0F));
-
-        PartDefinition Center_r1 = Plantoids.addOrReplaceChild("Center_r1", CubeListBuilder.create().texOffs(79, 37).addBox(-0.5F, -1.3F, 0.3F, 1.0F, 3.0F, 2.0F, new CubeDeformation(1.3F)), PartPose.offsetAndRotation(0.0F, 2.0F, 0.0F, -0.2793F, 0.0F, 0.0F));
+        PartDefinition Center_r1 = Plantoids.addOrReplaceChild("Center_r1", CubeListBuilder.create().texOffs(79, 37).addBox(-0.5F, -1.3F, 0.3F, 1.0F, 3.0F, 2.0F, new CubeDeformation(1.1F)), PartPose.offsetAndRotation(0.0F, 2.0F, 0.0F, -0.2793F, 0.0F, 0.0F));
 
         PartDefinition Tail = Torso.addOrReplaceChild("Tail", CubeListBuilder.create(), PartPose.offset(0.0F, 11.0F, 0.0F));
 
@@ -270,6 +265,7 @@ public class LatexSquidDogFemaleModel extends AdvancedHumanoidModel<LatexSquidDo
 
         return LayerDefinition.create(meshdefinition, 96, 96);
     }
+
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green,

@@ -24,6 +24,7 @@ public class ChangedItems {
     public static final RegistryObject<Benign.Pants> BENIGN_PANTS = register("benign_pants", Benign.Pants::new);
     public static final RegistryObject<PinkLatex.Pants> PINK_PANTS = register("pink_pants", PinkLatex.Pants::new);
     public static final RegistryObject<BlackTop.Top> BLACK_TOP = register("black_top", BlackTop.Top::new);
+    public static final RegistryObject<PinkTop.Top> PINK_TOP = register("pink_top", PinkTop.Top::new);
     public static final RegistryObject<GasMaskItem> GAS_MASK = register("gas_mask", GasMaskItem::new);
     public static final RegistryObject<AbstractChangedItem> DARK_LATEX_CRYSTAL_FRAGMENT = register("dark_latex_crystal_fragment", AbstractChangedItem::new);
     public static final RegistryObject<AbstractLatexItem> DARK_LATEX_GOO = register("dark_latex_goo", () -> new AbstractLatexItem(LatexType.DARK_LATEX));

@@ -18,7 +18,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
-public class ArmorLatexFemaleSquidDogModel<T extends ChangedEntity> extends LatexHumanoidArmorModel<T, ArmorLatexFemaleSquidDogModel<T>> {
+public class ArmorLatexFemaleSquidDogModel3<T extends ChangedEntity> extends LatexHumanoidArmorModel<T, ArmorLatexFemaleSquidDogModel3<T>> {
     public static final ModelLayerLocation INNER_ARMOR = ArmorModelLayerLocation.createInnerArmorLocation(Changed.modResource("armor_latex_squid_dog_female_unified")).get();
     public static final ModelLayerLocation OUTER_ARMOR = ArmorModelLayerLocation.createOuterArmorLocation(Changed.modResource("armor_latex_squid_dog_female_unified")).get();
 
@@ -30,9 +30,9 @@ public class ArmorLatexFemaleSquidDogModel<T extends ChangedEntity> extends Late
     private final ModelPart RightArm;
     private final ModelPart LeftArm2;
     private final ModelPart RightArm2;
-    private final HumanoidAnimator<T, ArmorLatexFemaleSquidDogModel<T>> animator;
+    private final HumanoidAnimator<T, ArmorLatexFemaleSquidDogModel3<T>> animator;
 
-    public ArmorLatexFemaleSquidDogModel(ModelPart modelPart) {
+    public ArmorLatexFemaleSquidDogModel3(ModelPart modelPart) {
         this.Head = modelPart.getChild("Head");
         this.Torso = modelPart.getChild("Torso");
         this.LeftLeg = modelPart.getChild("LeftLeg");
@@ -103,10 +103,10 @@ public class ArmorLatexFemaleSquidDogModel<T extends ChangedEntity> extends Late
         PartDefinition Plantoid_r1 = Plantoids.addOrReplaceChild("Plantoid_r1", CubeListBuilder.create().texOffs(18, 22).mirror().addBox(-4.0F, 2.3F, -0.8F, 8.0F, 1.0F, 2.0F, layer.deformation.extend(-0.5f)).mirror(false)
                 .texOffs(18, 19).mirror().addBox(-4.0F, -1.7F, -0.8F, 8.0F, 3.0F, 2.0F, layer.deformation.extend(-0.5f)).mirror(false), PartPose.offsetAndRotation(0.0F, 2.0F, 0.0F, -0.2793F, 0.0F, 0.0F));
         */
-        PartDefinition Plantoids = Torso.addOrReplaceChild("Plantoids", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 1.75F, -3.475F, -0.3491F, 0.0F, 0.0F));
+        PartDefinition Plantoids = Torso.addOrReplaceChild("Plantoids", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 2.0F, -3.975F, -0.3927F, 0.0F, 0.0F));
 
-        PartDefinition Plantoid_r1 = Plantoids.addOrReplaceChild("Plantoid_r1", CubeListBuilder.create().texOffs(20, 21).mirror().addBox(-4.0F, 1.4012F, -0.7384F, 8.0F, 1.0F, 4.0F, layer.deformation.extend(-0.5f)).mirror(false)
-                .texOffs(18, 19).mirror().addBox(-4.0F, -2.5988F, -0.7384F, 8.0F, 4.0F, 2.0F, layer.deformation.extend(-0.501f)).mirror(false), PartPose.offsetAndRotation(0.0F, 2.0F, 0.0F, -0.2793F, 0.0F, 0.0F));
+        PartDefinition Plantoid_r1 = Plantoids.addOrReplaceChild("Plantoid_r1", CubeListBuilder.create().texOffs(20, 21).mirror().addBox(-4.0F, 1.3012F, -0.5384F, 8.0F, 1.0F, 4.0F, layer.deformation.extend(-0.401f)).mirror(false)
+                .texOffs(17, 18).mirror().addBox(-4.0F, -3.0488F, -0.5384F, 8.0F, 4.0F, 3.0F, layer.deformation.extend(-0.4f)).mirror(false), PartPose.offsetAndRotation(0.0F, 2.0F, 0.0F, -0.2793F, 0.0F, 0.0F));
 
 
         PartDefinition RightUpperTentacle = Torso.addOrReplaceChild("RightUpperTentacle", CubeListBuilder.create(), PartPose.offset(-2.5F, 2.7F, 1.0F));
@@ -164,7 +164,7 @@ public class ArmorLatexFemaleSquidDogModel<T extends ChangedEntity> extends Late
     }
 
     @Override
-    public HumanoidAnimator<T, ArmorLatexFemaleSquidDogModel<T>> getAnimator() {
+    public HumanoidAnimator<T, ArmorLatexFemaleSquidDogModel3<T>> getAnimator() {
         return animator;
     }
 }
